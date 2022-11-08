@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Lista de aspirantes</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+        <link href="css/newcss.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        
+        
+        <!-- Div para mostrar titulo y botones -->
+        <div class="container">
+            <div class="row">
+                <center><h1>UNSIJ ASPIRANTES</h1></center>
+                <br>
+                <div class="container">
+                    <button type="button" class="btn btn-outline-dark " onclick="loadDoc()">LISTAR ASPIRANTES</button>
+                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#nuevoAspirante">AGREGAR NUEVO</button> 
+                </div>
+                <br>
+                <br>
+            </div>
+        </div>
+   
+        
+        <!-- Div para mostrar la lista de aspirantes -->
+        <div class="container">
+            <div class="row">
+                <table id="tablaAspirantes" class="table table-dark table-striped" style="width:100%" ></table>
+            </div>
+        </div>
+
+        <!-- Modal nuevo aspirantes -->
+        <div class="modal" id="nuevoAspirante">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">AGREGAR NUEVO ASPIRANTE</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <p class="statusMsg"></p>
+                        <form id="formulario" role="form">
+                            <!-- Grupo: Nombre-->
+                            <div class="formulario__grupo" id="grupo__nombre">
+                                <label for="nombre" class="formulario__label">Nombre</label>
+                                <div class="formulario__grupo-input">
+                                    <input type="text" class="formulario__input" name="nombre" placeholder="Uriel">
+                                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                                </div>
+                                <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+                            </div>
+                            <!-- Grupo: ApPaterno-->
+                            <div class="formulario__grupo" id="grupo__apPaterno">
+                                <label for="apPaterno" class="formulario__label">Apellido Paterno</label>
+                                <div class="formulario__grupo-input">
+                                    <input type="text" class="formulario__input" name="apPaterno" placeholder="Aguilar">
+                                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                                </div>
+                                <p class="formulario__input-error">El Apellido Paterno tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+                            </div>
+                            <!-- Grupo: ApMaterno-->
+                            <div class="formulario__grupo" id="grupo__apMaterno">
+                                <label for="apMaterno" class="formulario__label">Apellido Paterno</label>
+                                <div class="formulario__grupo-input">
+                                    <input type="text" class="formulario__input" name="apMaterno" placeholder="Mauricio">
+                                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                                </div>
+                                <p class="formulario__input-error">El Apellido Materno tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+                            </div>
+                            <!-- Grupo: Procedencia-->
+                            <div class="formulario__grupo" id="grupo__procedencia">
+                                <label for="procedencia" class="formulario__label">Procedencia</label>
+                                <div class="formulario__grupo-input">
+                                    <input type="text" class="formulario__input" name="procedencia" placeholder="Procedencia">
+                                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                                </div>
+                                <p class="formulario__input-error">La procedencia tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+                            </div>
+                            <!-- Grupo: Correo Electronico -->
+                            <div class="formulario__grupo" id="grupo__correo">
+                                <label for="correo" class="formulario__label">Correo Electrónico</label>
+                                <div class="formulario__grupo-input">
+                                    <input type="email" class="formulario__input" name="correo" id="correo" placeholder="correo@correo.com">
+                                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                                </div>
+                                <p class="formulario__input-error">El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.</p>
+                            </div>
+                            <!-- Grupo: Telefono -->
+                            <div class="formulario__grupo" id="grupo__telefono">
+                                <label for="telefono" class="formulario__label">Telefono</label>
+                                <div class="formulario__grupo-input">
+                                    <input type="text" class="formulario__input" name="telefono" placeholder="9516317305">
+                                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                                </div>
+                                <p class="formulario__input-error">El telefono tiene que ser de 10 a 12 dígitos y solo puede contener numeros</p>
+                            </div>
+                            <!-- Grupo: Especialidad-->
+                            <div class="formulario__grupo" id="grupo__especialidad">
+                                <label for="especialidad" class="formulario__label">Especialidad</label>
+                                <div class="formulario__grupo-input">
+                                    <input type="text" class="formulario__input" name="especialidad" placeholder="Informática">
+                                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                                </div>
+                                <p class="formulario__input-error">La especialidad tiene que ser de 10 a 30 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+                            </div>
+                            <!-- Grupo: Direccion-->
+                            <div class="formulario__grupo" id="grupo__direccion">
+                                <label for="direccion" class="formulario__label">Dirección</label>
+                                <div class="formulario__grupo-input">
+                                    <input type="text" class="formulario__input" name="direccion" placeholder="Av. Universidad">
+                                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                                </div>
+                                <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-outline-success" class="formulario__btn" id="nuevo">Enviar</button>
+                    </div>
+                </div>
+            </div>
+        </div>  
+        
+        
+        <!-- Modal detalle aspirantes -->
+        <div class="modal" id="detalleAspirante">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">DETALLE DEL ASPIRANTE</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <ul class="list-group list-group-flush">
+                            <li id="nombre" class="list-group-item"></li>
+                            <li id="apPaterno" class="list-group-item"></li>
+                            <li id="apMaterno" class="list-group-item"></li>
+                            <li id="procedencia" class="list-group-item"></li>
+                            <li id="email" class="list-group-item"></li>
+                            <li id="telefono" class="list-group-item"></li>
+                            <li id="especialidad" class="list-group-item"></li>
+                            <li id="direccion" class="list-group-item"></li>
+                        </ul>
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <!-- Modal modificar aspirantes -->
+        <div class="modal" id="modificarAspirante">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">MODIFICAR ASPIRANTE</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <form role="form" name="fvalid" id="dat">
+                            <div class="form-group">
+                                <label for="inputEmail">ID</label>
+                                <input type="email" class="form-control" id="idTxt" disabled/>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputName">Nombre*</label>
+                                <input type="text" class="form-control" id="nombreTxt" name="Nombre"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail">Apellido Paterno*</label>
+                                <input type="email" class="form-control" id="apPaternoTxt" name="ApPaterno"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail">Apellido Materno*</label>
+                                <input type="email" class="form-control" id="apMaternoTxt" name="ApMaterno"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail">Procedencia*</label>
+                                <input type="email" class="form-control" id="procedenciaTxt" name="Procedencia"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail">Correo Electronico*</label>
+                                <input type="email" class="form-control" id="correoTxt" name="Correo"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail">Telefono*</label>
+                                <input type="email" class="form-control" id="telefonoTxt" name="Telefono"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail">Especialidad*</label>
+                                <input type="email" class="form-control" id="especialidadTxt" name="Especialidad"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail">Dirección*</label>
+                                <input type="email" class="form-control" id="direccionTxt" name="Direccion"/>
+                            </div>   
+                        </form>
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-danger" id="modificarBtn">Modificar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <!-- Modal eliminar aspirantes -->
+        <div class="modal" id="eliminarAspirante">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">ELIMINAR ASPIRANTE</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        Desea eliminar el aspirante?
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-danger" id="eliminarBtn">Eliminar</button>
+                    </div>
+                </div>
+            </div>
+         </div>
+    </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+    <script src="js/miConfiguracion.js"></script>
+    <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+</html>
